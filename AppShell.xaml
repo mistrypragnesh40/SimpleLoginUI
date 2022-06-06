@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="SimpleLoginUI.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:SimpleLoginUI"
+    xmlns:dashboardPages="clr-namespace:SimpleLoginUI.Views.Dashboard"
+    xmlns:models="clr-namespace:SimpleLoginUI.Models"
+    Shell.TabBarIsVisible="False"
+    xmlns:startupPages="clr-namespace:SimpleLoginUI.Views.Startup">
+
+   
+    <ShellContent FlyoutItemIsVisible="False" Shell.FlyoutBehavior="Disabled"
+        ContentTemplate="{DataTemplate startupPages:LoadingPage}" Route="LoadingPage" />
+
+    <ShellContent
+        Title="Login Page" FlyoutItemIsVisible="False" Shell.FlyoutBehavior="Disabled"
+        ContentTemplate="{DataTemplate startupPages:LoginPage}"
+        Route="LoginPage" />
+
+    <FlyoutItem Route="DashboardPage" FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent
+        Title="Dashboard" Icon="{x:Static models:Icons.Dashboard}"
+        ContentTemplate="{DataTemplate dashboardPages:DashboardPage}" />
+        
+        <ShellContent
+        Title="People"  Icon="{x:Static models:Icons.People}"
+        ContentTemplate="{DataTemplate dashboardPages:DashboardPage}"/>
+
+        <ShellContent
+        Title="Contact Us"  Icon="{x:Static models:Icons.ContactUs}"
+        ContentTemplate="{DataTemplate dashboardPages:DashboardPage}"/>
+
+        <ShellContent
+        Title="About Us"  Icon="{x:Static models:Icons.AboutUs}"
+        ContentTemplate="{DataTemplate dashboardPages:DashboardPage}" />
+    </FlyoutItem>
+    
+    <Shell.FlyoutFooter>
+        <StackLayout Padding="20">
+            <Button Text="Sign Out" Command="{Binding SignOutCommand}" />
+        </StackLayout>
+    </Shell.FlyoutFooter>
+
+</Shell>
