@@ -10,6 +10,7 @@ public partial class FlyoutHeaderControl : StackLayout
         {
 			lblUserName.Text = App.UserDetails.FullName;
             lblUserEmail.Text = App.UserDetails.Email;
+            lblUserRole.Text = App.UserDetails.RoleText;
         }
     }
 }

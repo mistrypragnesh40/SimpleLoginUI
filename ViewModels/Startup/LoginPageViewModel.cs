@@ -24,15 +24,31 @@ namespace SimpleLoginUI.ViewModels.Startup
         [ICommand]
         async void Login()
         {
-            if(!string.IsNullOrWhiteSpace(Email) && !string.IsNullOrWhiteSpace(Password))
+            if (!string.IsNullOrWhiteSpace(Email) && !string.IsNullOrWhiteSpace(Password))
             {
-                // calling api 
+                var userDetails = new UserBasicInfo();
+                userDetails.Email = Email;
+                userDetails.FullName = "Test User Name";
 
-                var userDetails = new UserBasicInfo()
+                // Student Role, Teacher Role, Admin Role,
+                if (Email.ToLower().Contains("student"))
                 {
-                    Email = Email,
-                    FullName = "Test User Name"
-                };
+                    userDetails.RoleID = (int)RoleDetails.Student;
+                    userDetails.RoleText = "Student Role";
+                }
+                else if (Email.ToLower().Contains("teacher"))
+                {
+                    userDetails.RoleID = (int)RoleDetails.Teacher;
+                    userDetails.RoleText = "Teacher Role";
+                }
+                else
+                {
+                    userDetails.RoleID = (int)RoleDetails.Admin;
+                    userDetails.RoleText = "Admin Role";
+                }
+
+
+                // calling api 
 
 
                 if (Preferences.ContainsKey(nameof(App.UserDetails)))
@@ -43,9 +59,7 @@ namespace SimpleLoginUI.ViewModels.Startup
                 string userDetailStr = JsonConvert.SerializeObject(userDetails);
                 Preferences.Set(nameof(App.UserDetails), userDetailStr);
                 App.UserDetails = userDetails;
-                AppShell.Current.FlyoutHeader = new FlyoutHeaderControl();
-
-                await Shell.Current.GoToAsync($"//{nameof(DashboardPage)}");
+                await AppConstant.AddFlyoutMenusDetails();
             }
 
 

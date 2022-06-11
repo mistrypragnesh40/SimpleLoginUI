@@ -30,11 +30,9 @@ namespace SimpleLoginUI.ViewModels.Startup
             {
                 var userInfo = JsonConvert.DeserializeObject<UserBasicInfo>(userDetailsStr);
                 App.UserDetails = userInfo;
-                AppShell.Current.FlyoutHeader = new FlyoutHeaderControl();
-                await Shell.Current.GoToAsync($"//{nameof(DashboardPage)}");
-                // navigate to dashboard
+                await AppConstant.AddFlyoutMenusDetails();
             }
         }
-       
+
     }
 }

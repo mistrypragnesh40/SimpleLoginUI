@@ -1,4 +1,5 @@
-﻿using SimpleLoginUI.ViewModels;
+﻿using SimpleLoginUI.Models;
+using SimpleLoginUI.ViewModels;
 using SimpleLoginUI.Views.Dashboard;
 
 namespace SimpleLoginUI;
@@ -9,6 +10,7 @@ public partial class AppShell : Shell
     {
         InitializeComponent();
         this.BindingContext = new AppShellViewModel();
-        Routing.RegisterRoute(nameof(DashboardPage), typeof(DashboardPage));
+
+       
     }
 }
