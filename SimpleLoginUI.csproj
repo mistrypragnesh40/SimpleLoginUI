@@ -89,7 +89,6 @@
 	<ItemGroup>
 	  <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.1.2" />
 	  <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-	  <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.19.0" />
 	</ItemGroup>
 
 </Project>

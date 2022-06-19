@@ -5,7 +5,6 @@ using SimpleLoginUI.Views.Dashboard;
 using SimpleLoginUI.Views.Startup;
 using System;
 using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,25 +28,9 @@ namespace SimpleLoginUI.ViewModels.Startup
             }
             else
             {
-               var tokenDetails = await SecureStorage.GetAsync(nameof(App.Token));
-
-                var handler = new JwtSecurityTokenHandler();
-                var jsonToken = handler.ReadToken(tokenDetails) as JwtSecurityToken;
-
-                if(jsonToken.ValidTo < DateTime.UtcNow)
-                {
-                    await Shell.Current.DisplayAlert("User session expired", "Login Again To conitnue", "OK");
-                    await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
-                }
-                else
-                {
-                    var userInfo = JsonConvert.DeserializeObject<UserBasicInfo>(userDetailsStr);
-                    App.UserDetails = userInfo;
-                    App.Token = tokenDetails;
-                    await AppConstant.AddFlyoutMenusDetails();
-                }
-
-                
+                var userInfo = JsonConvert.DeserializeObject<UserBasicInfo>(userDetailsStr);
+                App.UserDetails = userInfo;
+                await AppConstant.AddFlyoutMenusDetails();
             }
         }
 

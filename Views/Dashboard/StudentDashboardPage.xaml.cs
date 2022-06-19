@@ -1,13 +1,9 @@
-using SimpleLoginUI.ViewModels.Dashboard;
-
 namespace SimpleLoginUI.Views.Dashboard;
 
 public partial class StudentDashboardPage : ContentPage
 {
-	public StudentDashboardPage(StudentDashboardPageVieiwModel viewModel)
+	public StudentDashboardPage()
 	{
 		InitializeComponent();
-		this.BindingContext = viewModel;
-
-    }
+	}
 }

@@ -5,19 +5,5 @@
              Title="StudentDashboardPage">
     <StackLayout Padding="10">
         <Label FontSize="18" Text="Welcome to Student Dashboard Page" />
-
-        <CollectionView ItemsSource="{Binding Users}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <StackLayout Padding="10">
-                        <HorizontalStackLayout>
-                            <Label Text="{Binding FirstName}" />
-                            <Label Text="{Binding LastName}" />
-                        </HorizontalStackLayout>
-                        <Label Text="{Binding Email}" />
-                    </StackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
     </StackLayout>
 </ContentPage>
