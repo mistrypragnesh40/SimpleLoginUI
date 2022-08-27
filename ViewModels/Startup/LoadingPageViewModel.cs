@@ -23,7 +23,17 @@ namespace SimpleLoginUI.ViewModels.Startup
 
             if (string.IsNullOrWhiteSpace(userDetailsStr))
             {
-                await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
+                if (DeviceInfo.Platform == DevicePlatform.WinUI)
+                {
+                    AppShell.Current.Dispatcher.Dispatch(async() =>
+                    {
+                        await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
+                    });
+                }
+                else
+                {
+                    await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
+                }
                 // navigate to Login Page
             }
             else
