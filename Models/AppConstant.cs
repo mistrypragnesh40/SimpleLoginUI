@@ -1,5 +1,6 @@
 ﻿using SimpleLoginUI.Controls;
 using SimpleLoginUI.Views.Dashboard;
+using SimpleLoginUI.Views.Startup;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,7 +52,17 @@ namespace SimpleLoginUI.Models
                 if (!AppShell.Current.Items.Contains(flyoutItem))
                 {
                     AppShell.Current.Items.Add(flyoutItem);
-                    await Shell.Current.GoToAsync($"//{nameof(StudentDashboardPage)}");
+                    if (DeviceInfo.Platform == DevicePlatform.WinUI)
+                    {
+                        AppShell.Current.Dispatcher.Dispatch(async () =>
+                        {
+                            await Shell.Current.GoToAsync($"//{nameof(StudentDashboardPage)}");
+                        });
+                    }
+                    else
+                    {
+                        await Shell.Current.GoToAsync($"//{nameof(StudentDashboardPage)}");
+                    }
                 }
 
             }
@@ -83,7 +94,17 @@ namespace SimpleLoginUI.Models
                 if (!AppShell.Current.Items.Contains(flyoutItem))
                 {
                     AppShell.Current.Items.Add(flyoutItem);
-                    await Shell.Current.GoToAsync($"//{nameof(TeacherDashboardPage)}");
+                    if (DeviceInfo.Platform == DevicePlatform.WinUI)
+                    {
+                        AppShell.Current.Dispatcher.Dispatch(async () =>
+                        {
+                            await Shell.Current.GoToAsync($"//{nameof(TeacherDashboardPage)}");
+                        });
+                    }
+                    else
+                    {
+                        await Shell.Current.GoToAsync($"//{nameof(TeacherDashboardPage)}");
+                    }
                 }
             }
 
@@ -114,8 +135,20 @@ namespace SimpleLoginUI.Models
                 if (!AppShell.Current.Items.Contains(flyoutItem))
                 {
                     AppShell.Current.Items.Add(flyoutItem);
-                    await Shell.Current.GoToAsync($"//{nameof(AdminDashboardPage)}");
+                    if (DeviceInfo.Platform == DevicePlatform.WinUI)
+                    {
+                        AppShell.Current.Dispatcher.Dispatch(async () =>
+                        {
+                            await Shell.Current.GoToAsync($"//{nameof(AdminDashboardPage)}");
+                        });
+                    }
+                    else
+                    {
+                        await Shell.Current.GoToAsync($"//{nameof(AdminDashboardPage)}");
+                    }
                 }
+
+
             }
         }
     }
